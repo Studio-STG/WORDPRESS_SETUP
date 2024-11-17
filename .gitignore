@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.DS_Store?
+.DS_Store
+**/.DS_Store
+
+# project
+.env
+app/wordpress_data
+
+# themes
+app/themes/*
+!app/themes/studio_stg
+
+# plugins
+app/plugins/*
+!app/plugins/advanced-custom-fields-pro

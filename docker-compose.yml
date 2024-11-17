@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:php8.2
+    container_name: stg_wordpress_container
+    env_file: ".env"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+    volumes:
+      - ./app/themes:/var/www/html/wp-content/themes
+      - ./app/plugins:/var/www/html/wp-content/plugins
+      - ./app/wordpress_data:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/php-custom.ini
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: stg_mysql_container
+    env_file: ".env"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: stg_phpmyadmin_container
+    env_file: ".env"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
