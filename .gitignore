@@ -9,6 +9,7 @@
 # project
 .env
 app/wordpress_data
+dump.sql
 
 # themes
 app/themes/*

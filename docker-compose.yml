@@ -1,8 +1,7 @@
-version: '3.8'
-
 services:
   wordpress:
-    image: wordpress:php8.2
+    build:
+      context: .
     container_name: stg_wordpress_container
     env_file: ".env"
     environment:
