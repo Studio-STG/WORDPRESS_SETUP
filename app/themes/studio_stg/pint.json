@@ -10,6 +10,8 @@
     "blank_line_after_opening_tag": true,
     "cast_spaces": {
       "space": "single"
-    }
+    },
+    "final_class": true,
+    "single_quote": true
   }
 }

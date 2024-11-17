@@ -4,7 +4,7 @@ namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
 
-class App extends Composer
+final class App extends Composer
 {
     /**
      * List of views served by this composer.

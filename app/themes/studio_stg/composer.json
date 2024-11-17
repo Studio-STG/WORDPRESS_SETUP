@@ -35,5 +35,9 @@
         "App\\Providers\\ThemeServiceProvider"
       ]
     }
+  },
+  "scripts": {
+    "lint:fix": "./vendor/bin/pint",
+    "lint:test": "./vendor/bin/pint --test"
   }
 }
