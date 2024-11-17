@@ -34,7 +34,6 @@ add_action('enqueue_block_editor_assets', function () {
 add_action('after_setup_theme', function () {
     /**
      * Register the navigation menus.
-     *
      */
     register_nav_menus([
         'header' => 'Menu Cabeçalho',
@@ -56,3 +55,8 @@ add_action('after_setup_theme', function () {
         'style',
     ]);
 }, 20);
+
+$array = [
+    'header' => 'Menu Cabeçalho',
+    'footer' => 'Menu Rodapé',
+];
