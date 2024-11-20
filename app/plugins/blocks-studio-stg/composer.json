@@ -1,0 +1,30 @@
+{
+    "name": "studio-stg/blocks-studio-stg",
+    "description": "Studio STG Gutenberg Blocks",
+    "version": "1.0.0",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Studio STG",
+            "email": "jefferoidtex7@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "illuminate/view": "^11.29",
+        "jenssegers/blade": "^2.0",
+        "stoutlogic/acf-builder": "^1.12",
+        "symfony/var-dumper": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "STG\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}

@@ -18,3 +18,14 @@ app/themes/*
 # plugins
 app/plugins/*
 !app/plugins/advanced-custom-fields-pro
+!app/plugins/blocks-studio-stg
+
+# Database
+db_data
+
+# Themes
+app/themes
+
+# Wordpress
+wordpress
+server
