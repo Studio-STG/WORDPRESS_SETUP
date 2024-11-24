@@ -1,7 +1,141 @@
 .banner-colombia {
+  @apply
+    py-7
+    font-roboto
+  ;
+
+  &__container {
     @apply
-        container
-        bg-blue-500/100
-        text-white/100
+      container
+      w-auto
     ;
+  }
+
+  &__grid {
+    @apply
+      grid
+      gap-8
+      items-center
+      lg:grid-cols-2
+      lg:gap-20
+    ;
+
+    &--left {
+      .banner-colombia__picture {
+        @apply
+          lg:order-1
+        ;
+      }
+
+      .banner-colombia__content {
+        @apply
+          lg:order-2
+        ;
+      }
+    }
+
+    &--right {
+      .banner-colombia__picture {
+        @apply
+          lg:order-2
+        ;
+      }
+
+      .banner-colombia__content {
+        @apply
+          lg:order-1
+        ;
+      }
+    }
+  }
+
+  &__picture {
+    @apply
+      max-h-[460px]
+    ;
+
+    img {
+      @apply
+        w-full
+        h-full
+        object-contain
+      ;
+    }
+  }
+
+  &__title {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      @apply
+        text-5xl
+        font-extrabold
+        text-[#0F172A]/100
+        mt-0
+        mb-6
+      ;
+    }
+
+    br {
+      @apply
+        hidden
+        xl:block
+      ;
+    }
+  }
+
+  &__subtitle {
+    p {
+      @apply
+        text-lg
+        text-[#475569]/100
+      ;
+    }
+
+    br {
+      @apply
+        hidden
+        xl:block
+      ;
+    }
+  }
+
+  &__link {
+    @apply
+      text-base
+      text-[#2563EB]
+      font-medium
+      flex
+      gap-4
+      no-underline
+      transition-all
+      duration-300
+    ;
+
+    &:hover {
+      @apply
+        text-[#223b6f]
+      ;
+
+      svg {
+        @apply
+          text-[#223b6f]
+        ;
+      }
+    }
+
+    svg {
+      @apply
+        w-[14px]
+        text-[#2563EB]
+        p-1
+        transition-all
+        duration-300
+      ;
+    }
+  }
 }

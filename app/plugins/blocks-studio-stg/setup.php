@@ -63,3 +63,8 @@ function get_class_name_from_file($filePath) {
 add_action('acf/init', function () {
     load_blocks_from_directory(__DIR__ . '/src/controllers/blocks');
 });
+
+// Register Font Family
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_style('font-roboto', 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap', [], null);
+});
