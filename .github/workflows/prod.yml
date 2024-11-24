@@ -6,22 +6,18 @@ on:
 name: 🚀 Deploy website on push
 
 jobs:
-
   plutin-deploy:
     name: 🎉 Deploy Plugin
     runs-on: ubuntu-latest
 
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v3
-
-    - name: Use Node.js 22
-      uses: actions/setup-node@v2
-      with:
-        node-version: '22'
-
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
 
       - name: Install Dependencies Composer
         run: cd app/plugins/blocks-studio-stg && composer install --ignore-platform-reqs
