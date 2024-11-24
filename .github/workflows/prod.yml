@@ -1,0 +1,39 @@
+on:
+  push:
+    branches:
+      - master
+
+name: 🚀 Deploy website on push
+
+jobs:
+
+  plutin-deploy:
+    name: 🎉 Deploy Plugin
+    runs-on: ubuntu-latest
+
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 22
+      uses: actions/setup-node@v2
+      with:
+        node-version: '22'
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies Composer
+        run: cd app/plugins/blocks-studio-stg && composer install --ignore-platform-reqs
+
+      - name: Install Dependencies Node
+        run: cd app/plugins/blocks-studio-stg && npm install && npm run build
+
+      - name: 📂 Sync plugin files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: app/plugins/*
+          server-dir: public_html/wp-content/plugins
