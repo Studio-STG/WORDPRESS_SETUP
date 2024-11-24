@@ -122,11 +122,11 @@ final class STG_BannerColombia extends STG_Block
                         'label'        => 'Conteúdo',
                         'instructions' => 'Adicione o conteúdo referente ao bloco',
                     ])
-                        ->addTab('tab_header', [
+                        ->addTab('tab_text', [
                             'placement' => 'top',
-                            'label'     => 'Cabeçalho',
+                            'label'     => 'Textual',
                         ])
-                            ->addGroup('header', ['label' => ''])
+                            ->addGroup('texts', ['label' => ''])
                                 ->addWysiwyg('title', [
                                     'label'        => 'Título',
                                     'media_upload' => 0,
@@ -135,29 +135,38 @@ final class STG_BannerColombia extends STG_Block
                                 ->addWysiwyg('sub_title', [
                                     'label'        => 'Subtítulo',
                                     'media_upload' => 0,
+                                    'tabs'         => 'visual',
                                 ])
                             ->endGroup()
 
-                        ->addTab('cards', [
+                        ->addTab('tab_image', [
                             'placement' => 'top',
-                            'label'     => 'Cards',
+                            'label'     => 'Imagem',
                         ])
-                            ->addRepeater('cards', [
-                                'label'        => 'Cards',
-                                'layout'       => 'block',
-                                'button_label' => 'Adicionar Card',
-                            ])
-                                        ->addImage('image', [
-                                            'label'        => 'Imagem',
-                                            'preview_size' => 'thumbnail',
-                                        ])
-                                        ->addText('title', [
-                                            'label' => 'Título',
-                                        ])
-                                        ->addTextarea('content', [
-                                            'label' => 'Conteúdo',
-                                        ])
-                            ->endRepeater()
+                            ->addGroup('image', ['label' => ''])
+                                ->addImage('mobile', [
+                                    'label' => 'Celular',
+                                    'wrapper' => [
+                                        'width' => '50%',
+                                    ],
+                                ])
+                                ->addImage('desktop', [
+                                    'label' => 'Computador',
+                                    'wrapper' => [
+                                        'width' => '50%',
+                                    ],
+                                ])
+                            ->endGroup()
+
+                        ->addTab('tab_link', [
+                            'placement' => 'top',
+                            'label'     => 'Links',
+                        ])
+                            ->addGroup('link', ['label' => ''])
+                                ->addLink('link', [
+                                    'label' => 'Link',
+                                ])
+                            ->endGroup()
                     ->addAccordion('accordion_content_end')->endpoint()
                 ->endGroup()
 
@@ -166,17 +175,17 @@ final class STG_BannerColombia extends STG_Block
                         'label'        => 'Configurações',
                         'instructions' => 'Adicione as configurações referentes ao bloco',
                     ])
-                        ->addTab('tab_head', [
+                        ->addTab('tab_image', [
                             'placement' => 'top',
-                            'label'     => 'Cabeçalho',
+                            'label'     => 'Imagem',
                         ])
-                            ->addGroup('head', ['label' => ''])
-                                ->addRange('padding_bottom', [
-                                    'label'  => 'Espaçamento interno inferior',
-                                    'min'    => 0,
-                                    'max'    => 20,
-                                    'step'   => 1,
-                                    'append' => 'rem',
+                            ->addGroup('image', ['label' => ''])
+                                ->addTrueFalse('position', [
+                                    'label' => 'Posição da Imagem',
+                                    'default_value' => 0,
+                                    'ui' => 1,
+                                    'ui_on_text' => 'Direita',
+                                    'ui_off_text' => 'Esquerda',
                                 ])
                             ->endGroup()
                     ->addAccordion('accordion_config_end')->endpoint()
@@ -196,7 +205,20 @@ final class STG_BannerColombia extends STG_Block
      */
     public function data(): array
     {
-        return get_fields();
+        $data    = get_fields();
+        $content = $data['content'] ?? [];
+        $config  = $data['config'] ?? [];
+
+        return [
+            'title'     =>  $content['texts']['title'] ?? '',
+            'sub_title' =>  $content['texts']['sub_title'] ?? '',
+            'mobile'    =>  $content['image']['mobile'] ?? '',
+            'desktop'   =>  $content['image']['desktop'] ?? '',
+            'link'      =>  $content['link']['link'] ?? '',
+            'config'    =>  [
+                'position' => $config['image']['position'] ? 'right' : 'left',
+            ]
+        ];
     }
 
     /**
