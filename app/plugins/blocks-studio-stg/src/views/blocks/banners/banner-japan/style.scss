@@ -1,7 +1,153 @@
 .banner-japan {
+  @apply
+    font-roboto
+    relative
+  ;
+
+  &__container {
     @apply
-        container
-        bg-green-600/100
-        text-white/100
+      container
+      w-auto
+      overflow-hidden
+      lg:relative
+      lg:rounded-[30px]
     ;
+  }
+
+  &__cover {
+    @apply
+      absolute
+      top-0
+      left-0
+      w-full
+      h-full
+    ;
+
+    img {
+      @apply
+        object-cover
+        w-full
+        h-full
+      ;
+    }
+  }
+
+  &__grid {
+    @apply
+      grid
+      z-10
+      relative
+      py-20
+      px-5
+      lg:p-20
+      lg:grid-cols-2
+    ;
+
+    &--left {
+      .banner-japan__blank {
+        @apply
+          lg:order-1
+        ;
+      }
+
+      .banner-japan__content {
+        @apply
+          lg:order-2
+        ;
+      }
+    }
+
+    &--right {
+      .banner-japan__blank {
+        @apply
+          lg:order-2
+        ;
+      }
+
+      .banner-japan__content {
+        @apply
+          lg:order-1
+        ;
+      }
+    }
+  }
+
+  &__title {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      @apply
+        text-4xl
+        font-extrabold
+        text-current
+        mt-0
+        mb-6
+      ;
+    }
+
+    br {
+      @apply
+        hidden
+        xl:block
+      ;
+    }
+  }
+
+  &__subtitle {
+    p {
+      @apply
+        text-base
+        text-current
+      ;
+    }
+
+    br {
+      @apply
+        hidden
+        xl:block
+      ;
+    }
+  }
+
+  &__link {
+    @apply
+      text-sm
+      text-current
+      font-medium
+      flex
+      gap-4
+      no-underline
+      transition-all
+      duration-300
+      p-3
+      pl-0
+      mt-3
+    ;
+
+    &:hover {
+      @apply
+        brightness-75
+      ;
+
+      svg {
+        @apply
+          brightness-75
+        ;
+      }
+    }
+
+    svg {
+      @apply
+        w-[14px]
+        text-current
+        p-1
+        transition-all
+        duration-300
+      ;
+    }
+  }
 }
