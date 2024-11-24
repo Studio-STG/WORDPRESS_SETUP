@@ -124,7 +124,7 @@ final class STG_BannerColombia extends STG_Block
                     ])
                         ->addTab('tab_text', [
                             'placement' => 'top',
-                            'label'     => 'Conteúdo Textual',
+                            'label'     => 'Textual',
                         ])
                             ->addGroup('texts', ['label' => ''])
                                 ->addWysiwyg('title', [
