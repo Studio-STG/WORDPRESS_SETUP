@@ -31,5 +31,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: app/plugins/*
-          server-dir: public_html/wp-content/plugins
+          local-dir: app/plugins/
+          server-dir: public_html/wp-content/plugins/
