@@ -23,7 +23,7 @@ jobs:
         run: cd app/plugins/blocks-studio-stg && composer install --ignore-platform-reqs
 
       - name: Install Dependencies Node
-        run: cd app/plugins/blocks-studio-stg && npm install && npm run build
+        run: cd app/plugins/blocks-studio-stg && npm install && npm run build && rm -rf node_modules
 
       - name: 📂 Sync plugin files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -33,3 +33,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: app/plugins/
           server-dir: public_html/wp-content/plugins/
+          port: 21
